@@ -15,11 +15,13 @@ class kapacitor (
   String $service_name,
   Boolean $service_manage,
   Enum["present", "absent", "stopped", "running"] $service_ensure,
-  Boolean $service_enable
+  Boolean $service_enable,
+  String $package_version
 ) {
   include kapacitor::install
   include kapacitor::config
   include kapacitor::service
+
 
   $templates.each |String $template_name, Kapacitor::Template $template| {
     kapacitor_template {$template_name:
