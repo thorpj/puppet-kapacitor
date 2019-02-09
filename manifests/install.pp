@@ -22,7 +22,7 @@ class kapacitor::install {
         default => "kapacitor_${::kapacitor::version}_amd64.deb",
       }
 
-      $package_source = "https://dl.influxdata.com/kapacitor/releases/${kapacitor::version}"
+      $package_source = "https://dl.influxdata.com/kapacitor/releases/${package_source_name}"
       include wget
       wget::fetch { 'kapacitor':
         source      => $package_source,
