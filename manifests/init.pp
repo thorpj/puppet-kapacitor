@@ -16,7 +16,7 @@ class kapacitor (
   Boolean $service_manage,
   Enum["present", "absent", "stopped", "running"] $service_ensure,
   Boolean $service_enable,
-  String $package_version
+  String $version
 ) {
   include kapacitor::install
   include kapacitor::config
