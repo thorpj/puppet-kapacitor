@@ -1,18 +1,11 @@
-module Puppet::Parser::Functions
-  newfunction(:generate_toml, :type => :rvalue, :doc => <<-EOS
-This generate a TOML body from a Ruby hash
-  EOS
-  ) do |arguments|
-    raise(Puppet::ParseError, "generate_toml(): Wrong number of arguments " +
-        "given (#{arguments.size} for 1)") if arguments.size != 1
+ Puppet::Functions.create_function(:generate_toml) do
+  dispatch :generate_toml do
+    param 'Hash', :data
+  end
 
-    arg = arguments.first
-    unless arg.is_a?(Hash)
-      raise Puppet::ParseError, ("#{arg.inspect} is not a Hash. It looks to be a #{arg.class}")
-    end
-
+  def generate_toml(data)
     require 'toml'
 
-    TOML::Generator.new(arg).body
+    TOML::Generator.new(data).body
   end
 end
