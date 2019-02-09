@@ -23,6 +23,7 @@ class kapacitor::install {
       }
 
       $package_source = "https://dl.influxdata.com/kapacitor/releases/${package_source_name}"
+      include wget
       wget::fetch { 'kapacitor':
         source      => $package_source,
         destination => "/tmp/${package_source_name}"
